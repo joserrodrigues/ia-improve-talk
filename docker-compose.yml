@@ -1,0 +1,32 @@
+services:
+  app:
+    build:
+      args:
+        user: sammy
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: fiap-ml
+    ports:
+      - 8000:8000    
+    container_name: fiap-ml
+    restart: unless-stopped
+    working_dir: /var/app/
+    env_file:
+      - .env
+    volumes:
+      - ./:/var/app/
+    networks:
+      - fiap-ml
+
+volumes:
+  cache:
+    driver: local
+  working:
+    external: true
+    
+networks:
+  fiap-ml:
+    driver: bridge
+  
+  

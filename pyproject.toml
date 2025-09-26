@@ -1,0 +1,46 @@
+[project]
+name = "fiap-ml"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Erick Muller",email = "erick@em.pro.br"},
+    {name = "Jose Rubens",email = "jose.rubens@email.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12,<4"
+dependencies = [
+    "fastapi[standard] (>=0.115.12,<0.116.0)",
+    "duckdb (>=1.3.0,<2.0.0)",
+    "duckdb-engine (>=0.17.0,<0.18.0)",
+    "python-decouple (>=3.8,<4.0)",
+    "pyjwt (>=2.10.1,<3.0.0)",
+    "beautifulsoup4 (>=4.13.4,<5.0.0)",
+    "requests (>=2.32.4,<3.0.0)",
+    "uvicorn[standard] (>=0.35.0,<0.36.0)",
+    "scikit-learn (>=1.7.0,<2.0.0)",
+    "pytest (>=8.4.2,<9.0.0)",
+    "poethepoet (>=0.37.0,<0.38.0)",
+]
+
+[tool.poetry]
+packages = [{include = "*", from = "src"}]
+package-mode = false
+
+
+[tool.poetry.group.dev.dependencies]
+debugpy = "^1.8.14"
+pytest = "^8.4.0"
+pandas = "^2.3.0"
+poethepoet = "^0.37.0"
+pyright = "^1.1.403"
+ruff = "^0.12.3"
+pylint = "^3.3.7"
+mypy = "^1.17.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poe.tasks]
+servedev = "fastapi dev src/webapi/main.py --host 0.0.0.0"
+run = "fastapi run ./src/webapi/main.py --host 0.0.0.0"
